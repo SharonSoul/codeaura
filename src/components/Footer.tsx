@@ -1,11 +1,23 @@
+import Image from 'next/image';
+
 const Footer = () => {
     return (
         <footer className="bg-[#050509] border-t border-white/5 py-16">
             <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div className="col-span-1 md:col-span-2">
-                    <h2 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-[#8C37DB]">
-                        CodeAura Studios
-                    </h2>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="relative w-8 h-8">
+                            <Image
+                                src="/codeaura_icon_nobg.png"
+                                alt="CodeAura Logo"
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
+                        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-[#8C37DB]">
+                            CodeAura Studios
+                        </h2>
+                    </div>
                     <p className="text-gray-500 max-w-sm mb-6">
                         Where code meets creativity. We build the future of digital experiences.
                     </p>
