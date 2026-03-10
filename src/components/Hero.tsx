@@ -51,6 +51,7 @@ export default function Hero() {
     const [dimensions, setDimensions] = useState({ w: 1200, h: 800 });
     const [shaking, setShaking] = useState(false);
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
+    const tiltRaf = useRef<number>(0);
 
     useEffect(() => {
         setDimensions({ w: window.innerWidth, h: window.innerHeight });
@@ -72,12 +73,16 @@ export default function Hero() {
         [mouseX, mouseY]
     );
 
-    // Device orientation (mobile tilt)
+    // Device orientation (mobile tilt) — batched via RAF to avoid per-sensor-tick re-renders
     useEffect(() => {
+        const pending = { x: 0, y: 0 };
         const handleOrientation = (e: DeviceOrientationEvent) => {
-            const y = (e.gamma ?? 0) / 45;
-            const x = ((e.beta ?? 0) - 45) / 45;
-            setTilt({ x: Math.max(-1, Math.min(1, x)), y: Math.max(-1, Math.min(1, y)) });
+            pending.y = Math.max(-1, Math.min(1, (e.gamma ?? 0) / 45));
+            pending.x = Math.max(-1, Math.min(1, ((e.beta ?? 0) - 45) / 45));
+            cancelAnimationFrame(tiltRaf.current);
+            tiltRaf.current = requestAnimationFrame(() => {
+                setTilt({ x: pending.x, y: pending.y });
+            });
         };
         if (typeof DeviceOrientationEvent !== 'undefined') {
             const DevOr = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> };
@@ -132,20 +137,20 @@ export default function Hero() {
                 }}
             />
 
-            {/* Mouse-tracking orbs */}
+            {/* Mouse-tracking orbs — smaller on mobile to avoid blur-filter cost */}
             <motion.div
-                style={{ x: orbX1, y: orbY1 }}
-                className={`absolute top-[8%] right-[8%] w-[520px] h-[520px] rounded-full bg-electric/8 blur-[110px] pointer-events-none transition-all duration-700 ${
+                style={{ x: orbX1, y: orbY1, willChange: 'transform' }}
+                className={`absolute top-[8%] right-[8%] w-[240px] h-[240px] md:w-[520px] md:h-[520px] rounded-full bg-electric/8 blur-[60px] md:blur-[110px] pointer-events-none transition-[background-color] duration-700 ${
                     shaking ? 'scale-150 bg-electric/15' : ''
                 }`}
             />
             <motion.div
-                style={{ x: orbX2, y: orbY2 }}
-                className={`absolute bottom-[8%] left-[3%] w-[420px] h-[420px] rounded-full bg-coral/8 blur-[100px] pointer-events-none transition-all duration-700 ${
+                style={{ x: orbX2, y: orbY2, willChange: 'transform' }}
+                className={`absolute bottom-[8%] left-[3%] w-[200px] h-[200px] md:w-[420px] md:h-[420px] rounded-full bg-coral/8 blur-[50px] md:blur-[100px] pointer-events-none transition-[background-color] duration-700 ${
                     shaking ? 'scale-150 bg-coral/15' : ''
                 }`}
             />
-            <div className="absolute top-[45%] left-[45%] w-[500px] h-[500px] rounded-full bg-gold/5 blur-[120px] pointer-events-none" />
+            <div className="hidden md:block absolute top-[45%] left-[45%] w-[500px] h-[500px] rounded-full bg-gold/5 blur-[120px] pointer-events-none" />
 
             {/* Mobile tilt parallax element */}
             <div

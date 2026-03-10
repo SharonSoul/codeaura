@@ -11,6 +11,9 @@ export default function CursorFollower() {
     const rafRef = useRef<number>(0);
 
     useEffect(() => {
+        // Skip entirely on touch/coarse-pointer devices — no cursor needed, no RAF overhead
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
         const handleMove = (e: MouseEvent) => {
             mouse.current = { x: e.clientX, y: e.clientY };
             if (dotRef.current) {

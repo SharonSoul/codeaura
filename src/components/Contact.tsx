@@ -54,8 +54,8 @@ export default function Contact() {
                         </div>
                         <motion.p
                             variants={{
-                                hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
-                                visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6 } },
+                                hidden: { opacity: 0, y: 16 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                             }}
                             className="text-ink/55 text-lg leading-relaxed mb-10"
                         >
@@ -101,10 +101,10 @@ export default function Contact() {
 
                     {/* Right — Form */}
                     <motion.form
-                        initial={{ opacity: 0, x: 60, filter: 'blur(8px)' }}
-                        whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                        initial={{ opacity: 0, x: 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                         onSubmit={(e) => e.preventDefault()}
                         className="bg-white rounded-3xl p-8 md:p-10 border border-ink/5 shadow-xl shadow-ink/5"
                     >

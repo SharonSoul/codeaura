@@ -61,10 +61,10 @@ const services = [
 ];
 
 const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 55, scale: 0.95, filter: 'blur(6px)' },
+    hidden: { opacity: 0, y: 40, scale: 0.97 },
     visible: {
-        opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
-        transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+        opacity: 1, y: 0, scale: 1,
+        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     },
 };
 
@@ -116,8 +116,8 @@ export default function Services() {
                     </div>
                     <motion.p
                         variants={{
-                            hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
-                            visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: 'easeOut' } },
+                            hidden: { opacity: 0, y: 16 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
                         }}
                         className="text-ink/55 max-w-sm text-base leading-relaxed md:text-right"
                     >

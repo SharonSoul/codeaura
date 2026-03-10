@@ -96,10 +96,10 @@ export default function Process() {
                         <motion.div
                             key={i}
                             variants={{
-                                hidden: { opacity: 0, x: stepDirs[i].x, y: 30, filter: 'blur(6px)' },
+                                hidden: { opacity: 0, x: stepDirs[i].x, y: 24 },
                                 visible: {
-                                    opacity: 1, x: 0, y: 0, filter: 'blur(0px)',
-                                    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+                                    opacity: 1, x: 0, y: 0,
+                                    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
                                 },
                             }}
                             whileHover={{ y: -6, transition: { duration: 0.22 } }}

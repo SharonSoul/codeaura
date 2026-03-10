@@ -15,8 +15,8 @@ export default function About() {
                     backgroundSize: '40px 40px',
                 }}
             />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-electric/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-coral/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="hidden md:block absolute top-0 right-0 w-[600px] h-[600px] bg-electric/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="hidden md:block absolute bottom-0 left-0 w-[400px] h-[400px] bg-coral/10 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -111,8 +111,8 @@ export default function About() {
 
                         <motion.blockquote
                             variants={{
-                                hidden: { opacity: 0, x: 30, filter: 'blur(4px)' },
-                                visible: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: 'easeOut' } },
+                                hidden: { opacity: 0, x: 24 },
+                                visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' } },
                             }}
                             className="border-l-2 border-electric pl-6 mb-8"
                         >
