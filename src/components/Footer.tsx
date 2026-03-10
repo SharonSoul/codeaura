@@ -1,59 +1,78 @@
-import Image from 'next/image';
+import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
 
-const Footer = () => {
+const services = ['UI/UX Design', 'Web Development', 'App Development', 'Digital Marketing', 'Tech Writing', 'Cybersecurity'];
+const company = ['About', 'Work', 'Process', 'Contact'];
+
+export default function Footer() {
     return (
-        <footer className="bg-[#050509] border-t border-white/5 py-16">
-            <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
-                <div className="col-span-1 md:col-span-2">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="relative w-8 h-8">
-                            <Image
-                                src="/codeaura_icon_nobg.png"
-                                alt="CodeAura Logo"
-                                fill
-                                className="object-contain"
-                            />
+        <footer className="bg-navy text-white">
+            <div className="max-w-7xl mx-auto px-6 md:px-8 py-20">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+
+                    <div className="md:col-span-2">
+                        <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
+                            <div className="w-10 h-10 rounded-xl bg-electric flex items-center justify-center group-hover:bg-coral transition-colors">
+                                <span className="text-white font-bold text-sm">CA</span>
+                            </div>
+                            <span className="text-xl font-bold text-white tracking-tight">
+                                Code<span className="text-electric">Aura</span>
+                            </span>
+                        </Link>
+                        <p className="text-white/45 max-w-xs leading-relaxed mb-6 text-sm">
+                            Full-spectrum tech agency built for ambitious brands.
+                            Design, development, marketing, and security â€” we build what moves the world.
+                        </p>
+                        <div className="flex items-center gap-2 text-sm">
+                            <span className="text-white/35">Founded by</span>
+                            <span className="text-white font-semibold">Sharon Olaitan</span>
                         </div>
-                        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-[#8C37DB]">
-                            CodeAura Studios
-                        </h2>
                     </div>
-                    <p className="text-gray-500 max-w-sm mb-6">
-                        Where code meets creativity. We build the future of digital experiences.
-                    </p>
-                    <div className="flex gap-4">
-                        {/* Social Placeholders */}
-                        <div className="w-10 h-10 rounded-full bg-white/5"></div>
-                        <div className="w-10 h-10 rounded-full bg-white/5"></div>
-                        <div className="w-10 h-10 rounded-full bg-white/5"></div>
+
+                    <div>
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-white/35 mb-5">Services</h4>
+                        <ul className="space-y-3">
+                            {services.map(s => (
+                                <li key={s}>
+                                    <a href="#services" className="text-sm text-white/55 hover:text-electric transition-colors">{s}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-white/35 mb-5">Company</h4>
+                        <ul className="space-y-3 mb-8">
+                            {company.map(c => (
+                                <li key={c}>
+                                    <a href={`#${c.toLowerCase()}`} className="text-sm text-white/55 hover:text-electric transition-colors">{c}</a>
+                                </li>
+                            ))}
+                        </ul>
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-white/35 mb-5">Follow</h4>
+                        <ul className="space-y-3">
+                            <li>
+                                <a
+                                    href="https://tiktok.com/@sharon_olaitan"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-white/55 hover:text-electric transition-colors flex items-center gap-1.5"
+                                >
+                                    TikTok @sharon_olaitan <ExternalLink size={12} />
+                                </a>
+                            </li>
+                            <li><a href="#" className="text-sm text-white/55 hover:text-electric transition-colors">Instagram</a></li>
+                            <li><a href="#" className="text-sm text-white/55 hover:text-electric transition-colors">LinkedIn</a></li>
+                            <li><a href="#" className="text-sm text-white/55 hover:text-electric transition-colors">Twitter / X</a></li>
+                        </ul>
                     </div>
                 </div>
 
-                <div>
-                    <h3 className="font-bold mb-6">Services</h3>
-                    <ul className="space-y-4 text-gray-400 text-sm">
-                        <li><a href="#" className="hover:text-[#8C37DB]">Web Development</a></li>
-                        <li><a href="#" className="hover:text-[#8C37DB]">App Design</a></li>
-                        <li><a href="#" className="hover:text-[#8C37DB]">Brand Identity</a></li>
-                        <li><a href="#" className="hover:text-[#8C37DB]">SEO & Strategy</a></li>
-                    </ul>
+                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/25">
+                    <span>&copy; {new Date().getFullYear()} CodeAura. All rights reserved.</span>
+                    <span>Crafted with precision by the CodeAura team.</span>
                 </div>
-
-                <div>
-                    <h3 className="font-bold mb-6">Company</h3>
-                    <ul className="space-y-4 text-gray-400 text-sm">
-                        <li><a href="#about" className="hover:text-[#8C37DB]">About Us</a></li>
-                        <li><a href="#work" className="hover:text-[#8C37DB]">Our Work</a></li>
-                        <li><a href="#" className="hover:text-[#8C37DB]">Careers</a></li>
-                        <li><a href="#contact" className="hover:text-[#8C37DB]">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div className="max-w-[1200px] mx-auto px-6 mt-16 pt-8 border-t border-white/5 text-center text-gray-600 text-sm">
-                &copy; {new Date().getFullYear()} CodeAura Studios. All rights reserved.
             </div>
         </footer>
     );
-};
-
-export default Footer;
+}

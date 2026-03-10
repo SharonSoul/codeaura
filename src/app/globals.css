@@ -3,15 +3,42 @@
 @tailwind utilities;
 
 :root {
-    --color-primary: #8C37DB;
-    --color-secondary: #262262;
-    --color-text-dark: #1B1464;
-    --color-text-light: #F5F5FA;
-    --color-accent: #D4ADFC;
-    --bg-dark: #0a0a12;
+    --cream: #FAFAF5;
+    --mist: #F0F0EA;
+    --navy: #0A0F1E;
+    --electric: #1A56F0;
+    --coral: #FF5C35;
+    --gold: #F0A500;
+    --ink: #1A1A2E;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--color-text-light);
+    background-color: var(--cream);
+    color: var(--ink);
+}
+
+@media (pointer: fine) {
+    body {
+        cursor: none;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--electric);
+    border-radius: 3px;
+}
+
+::selection {
+    background-color: var(--electric);
+    color: white;
 }
