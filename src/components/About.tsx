@@ -30,23 +30,25 @@ export default function About() {
                         className="relative"
                     >
                         <div className="relative w-full max-w-sm mx-auto lg:mx-0">
-                            <div className="w-full aspect-[3/4] rounded-3xl bg-gradient-to-br from-electric/20 via-navy to-coral/20 border border-white/10 overflow-hidden relative flex flex-col items-center justify-end p-8">
-                                {/* Decorative elements */}
-                                <div className="absolute top-6 left-6 w-14 h-14 border border-white/10 rounded-2xl" />
-                                <div className="absolute top-12 right-8 w-8 h-8 border border-electric/30 rounded-full" />
-                                <div className="absolute top-1/3 left-4 w-2 h-2 bg-coral/60 rounded-full" />
-                                <div className="absolute top-1/2 right-6 w-3 h-3 bg-electric/60 rounded-full" />
+                            <div className="w-full aspect-[3/4] rounded-3xl overflow-hidden relative border border-white/10 shadow-2xl shadow-black/40 bg-navy">
+                                {/* Actual founder photo */}
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src="/img2.jpg"
+                                    alt="Sharon Olaitan — Founder & CEO, CodeAura"
+                                    className="absolute inset-0 w-full h-full object-cover object-top"
+                                />
+                                {/* Gradient overlay at bottom for name tag */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                                {/* Concentric rings */}
-                                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border border-white/5" />
-                                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-white/5" />
-
-                                {/* Avatar */}
-                                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-electric to-coral border-4 border-white/20 mb-4 flex items-center justify-center shadow-xl">
-                                    <span className="text-2xl font-bold text-white font-display italic">SO</span>
+                                {/* Name tag */}
+                                <div className="absolute bottom-6 left-6 right-6">
+                                    <h3 className="text-xl font-bold text-white mb-0.5">Sharon Olaitan</h3>
+                                    <p className="text-white/60 text-sm">Founder & CEO</p>
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-1 text-center">Sharon Olaitan</h3>
-                                <p className="text-white/50 text-sm text-center">Founder & CEO</p>
+
+                                {/* Electric accent line */}
+                                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-electric via-coral/60 to-transparent" />
                             </div>
 
                             {/* Floating stat cards */}
