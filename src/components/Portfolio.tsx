@@ -58,28 +58,55 @@ export default function Portfolio() {
     return (
         <section id="work" className="py-28 bg-cream">
             <div className="max-w-7xl mx-auto px-6 md:px-8">
-                <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+                    className="flex flex-col md:flex-row justify-between items-end gap-8 mb-12"
+                >
                     <div>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-sm text-electric font-medium uppercase tracking-[0.2em] block mb-3"
-                        >
-                            Selected Work
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-4xl md:text-6xl font-bold text-ink leading-tight"
-                        >
-                            Work We&apos;re
-                            <br />
-                            <span className="font-display italic font-normal text-electric">Proud Of</span>
-                        </motion.h2>
+                        <div className="overflow-hidden mb-3">
+                            <motion.span
+                                variants={{
+                                    hidden: { y: '120%', opacity: 0 },
+                                    visible: { y: '0%', opacity: 1, transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-sm text-electric font-medium uppercase tracking-[0.2em] block"
+                            >
+                                Selected Work
+                            </motion.span>
+                        </div>
+                        <div className="overflow-hidden">
+                            <motion.div
+                                variants={{
+                                    hidden: { y: '110%' },
+                                    visible: { y: '0%', transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-4xl md:text-6xl font-bold text-ink leading-tight"
+                            >
+                                Work We&apos;re
+                            </motion.div>
+                        </div>
+                        <div className="overflow-hidden">
+                            <motion.div
+                                variants={{
+                                    hidden: { y: '110%' },
+                                    visible: { y: '0%', transition: { duration: 0.9, delay: 0.07, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-4xl md:text-6xl font-bold text-ink leading-tight"
+                            >
+                                <span className="font-display italic font-normal text-electric">Proud Of</span>
+                            </motion.div>
+                        </div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <motion.div
+                        variants={{
+                            hidden: { opacity: 0, y: 16 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                        }}
+                        className="flex flex-wrap gap-2"
+                    >
                         {categories.map(cat => (
                             <button
                                 key={cat}
@@ -93,20 +120,20 @@ export default function Portfolio() {
                                 {cat}
                             </button>
                         ))}
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
 
                 <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <AnimatePresence>
-                        {filtered.map(project => (
+                    <AnimatePresence mode="popLayout">
+                        {filtered.map((project, idx) => (
                             <motion.div
                                 key={project.title}
                                 layout
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                whileHover={{ y: -8 }}
-                                transition={{ duration: 0.3 }}
+                                initial={{ opacity: 0, y: 50, scale: 0.93, rotate: idx % 2 === 0 ? -1.5 : 1.5 }}
+                                animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+                                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                                whileHover={{ y: -9 }}
+                                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: idx * 0.05 }}
                                 className="group relative h-[360px] rounded-3xl overflow-hidden cursor-pointer"
                             >
                                 <div

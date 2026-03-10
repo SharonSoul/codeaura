@@ -50,26 +50,47 @@ const testimonials = [
 export default function Testimonials() {
     return (
         <section className="py-28 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 md:px-8 mb-14">
-                <motion.span
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="text-sm text-electric font-medium uppercase tracking-[0.2em] block mb-3"
-                >
-                    Client Love
-                </motion.span>
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-4xl md:text-6xl font-bold text-ink"
-                >
-                    What Our Clients
-                    <br />
-                    <span className="font-display italic font-normal text-electric">Are Saying</span>
-                </motion.h2>
-            </div>
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+                className="max-w-7xl mx-auto px-6 md:px-8 mb-14"
+            >
+                <div className="overflow-hidden mb-3">
+                    <motion.span
+                        variants={{
+                            hidden: { y: '120%', opacity: 0 },
+                            visible: { y: '0%', opacity: 1, transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] } },
+                        }}
+                        className="text-sm text-electric font-medium uppercase tracking-[0.2em] block"
+                    >
+                        Client Love
+                    </motion.span>
+                </div>
+                <div className="overflow-hidden">
+                    <motion.div
+                        variants={{
+                            hidden: { y: '110%' },
+                            visible: { y: '0%', transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] } },
+                        }}
+                        className="text-4xl md:text-6xl font-bold text-ink"
+                    >
+                        What Our Clients
+                    </motion.div>
+                </div>
+                <div className="overflow-hidden">
+                    <motion.div
+                        variants={{
+                            hidden: { y: '110%' },
+                            visible: { y: '0%', transition: { duration: 0.9, delay: 0.07, ease: [0.76, 0, 0.24, 1] } },
+                        }}
+                        className="text-4xl md:text-6xl font-bold text-ink"
+                    >
+                        <span className="font-display italic font-normal text-electric">Are Saying</span>
+                    </motion.div>
+                </div>
+            </motion.div>
 
             <div
                 className="relative flex overflow-hidden"

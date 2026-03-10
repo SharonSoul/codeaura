@@ -13,36 +13,63 @@ export default function Contact() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
                     {/* Left — Info */}
-                    <div>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-sm text-electric font-medium uppercase tracking-[0.2em] block mb-3"
-                        >
-                            Get In Touch
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-4xl md:text-6xl font-bold text-ink mb-6 leading-tight"
-                        >
-                            Let&apos;s Build
-                            <br />
-                            <span className="font-display italic font-normal text-electric">Something Real.</span>
-                        </motion.h2>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.15 }}
+                        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+                    >
+                        <div className="overflow-hidden mb-3">
+                            <motion.span
+                                variants={{
+                                    hidden: { y: '120%', opacity: 0 },
+                                    visible: { y: '0%', opacity: 1, transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-sm text-electric font-medium uppercase tracking-[0.2em] block"
+                            >
+                                Get In Touch
+                            </motion.span>
+                        </div>
+                        <div className="overflow-hidden mb-6">
+                            <motion.div
+                                variants={{
+                                    hidden: { y: '110%' },
+                                    visible: { y: '0%', transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-4xl md:text-6xl font-bold text-ink leading-tight"
+                            >
+                                Let&apos;s Build
+                            </motion.div>
+                        </div>
+                        <div className="overflow-hidden mb-6">
+                            <motion.div
+                                variants={{
+                                    hidden: { y: '110%' },
+                                    visible: { y: '0%', transition: { duration: 0.85, delay: 0.07, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-4xl md:text-6xl font-bold text-ink leading-tight"
+                            >
+                                <span className="font-display italic font-normal text-electric">Something Real.</span>
+                            </motion.div>
+                        </div>
                         <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
+                            variants={{
+                                hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
+                                visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6 } },
+                            }}
                             className="text-ink/55 text-lg leading-relaxed mb-10"
                         >
                             Ready to take your product to the next level? Tell us about your project
                             and let&apos;s get to work.
                         </motion.p>
 
-                        <div className="space-y-4">
+                        <motion.div
+                            variants={{
+                                hidden: { opacity: 0, y: 20 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.5, staggerChildren: 0.08 } },
+                            }}
+                            className="space-y-4"
+                        >
                             <a
                                 href="mailto:hello@codeaura.io"
                                 className="flex items-center gap-3 text-ink/60 hover:text-electric transition-colors group"
@@ -69,14 +96,15 @@ export default function Contact() {
                                 </div>
                                 TikTok: @sharon_olaitan
                             </a>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     {/* Right — Form */}
                     <motion.form
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        initial={{ opacity: 0, x: 60, filter: 'blur(8px)' }}
+                        whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                         onSubmit={(e) => e.preventDefault()}
                         className="bg-white rounded-3xl p-8 md:p-10 border border-ink/5 shadow-xl shadow-ink/5"
                     >

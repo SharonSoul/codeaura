@@ -12,11 +12,17 @@ const brands = [
 export default function Brands() {
     return (
         <section className="py-16 bg-mist overflow-hidden border-y border-ink/5">
-            <div className="text-center mb-10">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-10"
+            >
                 <span className="text-xs text-ink/40 uppercase tracking-[0.25em] font-semibold">
                     Trusted by Ambitious Brands
                 </span>
-            </div>
+            </motion.div>
             <div
                 className="relative flex overflow-hidden"
                 style={{ maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' }}

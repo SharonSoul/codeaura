@@ -1,6 +1,6 @@
-'use client';
+﻿'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Palette, Code2, Smartphone, Megaphone, FileText, Shield } from 'lucide-react';
 
 const services = [
@@ -60,51 +60,84 @@ const services = [
     },
 ];
 
+const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 55, scale: 0.95, filter: 'blur(6px)' },
+    visible: {
+        opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+        transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    },
+};
+
 export default function Services() {
     return (
         <section id="services" className="py-28 bg-cream">
             <div className="max-w-7xl mx-auto px-6 md:px-8">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.25 }}
+                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+                    className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
+                >
                     <div>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-sm text-electric font-medium uppercase tracking-[0.2em] block mb-3"
-                        >
-                            What We Do
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-4xl md:text-6xl font-bold text-ink leading-tight"
-                        >
-                            Full-Spectrum
-                            <br />
-                            <span className="font-display font-normal italic text-electric">Tech Services</span>
-                        </motion.h2>
+                        <div className="overflow-hidden mb-3">
+                            <motion.span
+                                variants={{
+                                    hidden: { y: '120%', opacity: 0 },
+                                    visible: { y: '0%', opacity: 1, transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-sm text-electric font-medium uppercase tracking-[0.2em] block"
+                            >
+                                What We Do
+                            </motion.span>
+                        </div>
+                        <div className="overflow-hidden">
+                            <motion.div
+                                variants={{
+                                    hidden: { y: '110%' },
+                                    visible: { y: '0%', transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-4xl md:text-6xl font-bold text-ink leading-tight"
+                            >
+                                Full-Spectrum
+                            </motion.div>
+                        </div>
+                        <div className="overflow-hidden">
+                            <motion.div
+                                variants={{
+                                    hidden: { y: '110%' },
+                                    visible: { y: '0%', transition: { duration: 0.9, delay: 0.07, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-4xl md:text-6xl font-bold text-ink leading-tight"
+                            >
+                                <span className="font-display font-normal italic text-electric">Tech Services</span>
+                            </motion.div>
+                        </div>
                     </div>
                     <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        variants={{
+                            hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+                            visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: 'easeOut' } },
+                        }}
                         className="text-ink/55 max-w-sm text-base leading-relaxed md:text-right"
                     >
-                        From zero to launch and beyond â€” we handle every layer of the tech stack so you don\'t have to.
+                        From zero to launch and beyond â€” we handle every layer of the tech stack so you don&apos;t have to.
                     </motion.p>
-                </div>
+                </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.05 }}
+                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } } }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+                >
                     {services.map((service, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.07 }}
-                            whileHover={{ y: -5 }}
-                            className={`group p-7 rounded-2xl bg-white border border-ink/5 ${service.border} transition-all duration-300 hover:shadow-xl hover:shadow-ink/5`}
+                            variants={cardVariants}
+                            whileHover={{ y: -6, transition: { duration: 0.22 } }}
+                            className={`group p-7 rounded-2xl bg-white border border-ink/5 ${service.border} transition-[border,box-shadow] duration-300 hover:shadow-xl hover:shadow-ink/5`}
                         >
                             <div className="flex items-start justify-between mb-6">
                                 <div className={`p-3 rounded-xl ${service.bg}`}>
@@ -122,9 +155,8 @@ export default function Services() {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );
 }
-

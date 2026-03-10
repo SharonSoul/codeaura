@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function About() {
     return (
-        <section id="about" className="py-28 bg-navy overflow-hidden relative">
+        <section id="about" className="py-28 bg-navy relative">
             {/* Background dot pattern */}
             <div
                 className="absolute inset-0 opacity-[0.04]"
@@ -23,10 +23,10 @@ export default function About() {
 
                     {/* Left — Founder visual */}
                     <motion.div
-                        initial={{ opacity: 0, x: -40 }}
+                        initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
                         className="relative"
                     >
                         <div className="relative w-full max-w-sm mx-auto lg:mx-0">
@@ -71,49 +71,97 @@ export default function About() {
 
                     {/* Right — Story */}
                     <motion.div
-                        initial={{ opacity: 0, x: 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.15 }}
+                        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } } }}
                         className="text-white"
                     >
-                        <span className="text-sm text-electric font-medium uppercase tracking-[0.2em] block mb-4">Our Story</span>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] mb-6">
-                            Built by a<br />
-                            <span className="font-display font-normal italic text-coral">Founder</span><br />
-                            Who Cares.
-                        </h2>
+                        <div className="overflow-hidden mb-4">
+                            <motion.span
+                                variants={{
+                                    hidden: { y: '120%', opacity: 0 },
+                                    visible: { y: '0%', opacity: 1, transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] } },
+                                }}
+                                className="text-sm text-electric font-medium uppercase tracking-[0.2em] block"
+                            >
+                                Our Story
+                            </motion.span>
+                        </div>
 
-                        <blockquote className="border-l-2 border-electric pl-6 mb-8">
+                        <div className="mb-6">
+                            {['Built by a', 'Founder', 'Who Cares.'].map((line, li) => (
+                                <div key={li} className="overflow-hidden">
+                                    <motion.div
+                                        variants={{
+                                            hidden: { y: '110%' },
+                                            visible: { y: '0%', transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] } },
+                                        }}
+                                        className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] ${
+                                            li === 1 ? 'font-display font-normal italic text-coral' : ''
+                                        }`}
+                                    >
+                                        {line}
+                                    </motion.div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <motion.blockquote
+                            variants={{
+                                hidden: { opacity: 0, x: 30, filter: 'blur(4px)' },
+                                visible: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: 'easeOut' } },
+                            }}
+                            className="border-l-2 border-electric pl-6 mb-8"
+                        >
                             <p className="text-lg md:text-xl text-white/75 leading-relaxed font-display italic">
-                                "I built CodeAura because I believed ambitious brands deserved world-class tech.
-                                Not almost world-class. Actually world-class."
+                                &ldquo;I built CodeAura because I believed ambitious brands deserved world-class tech.
+                                Not almost world-class. Actually world-class.&rdquo;
                             </p>
-                        </blockquote>
+                        </motion.blockquote>
 
-                        <p className="text-white/55 leading-relaxed mb-10 text-base">
+                        <motion.p
+                            variants={{
+                                hidden: { opacity: 0, y: 16 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+                            }}
+                            className="text-white/55 leading-relaxed mb-10 text-base"
+                        >
                             Sharon Olaitan founded CodeAura with one mission: to be the agency that does it all,
                             and does it brilliantly. From design to development, marketing to cybersecurity,
                             we sit at the intersection of creativity, technology, and strategy — building digital
                             products that move markets.
-                        </p>
+                        </motion.p>
 
-                        <div className="grid grid-cols-3 gap-6 mb-10 pt-8 border-t border-white/10">
+                        <motion.div
+                            variants={{
+                                hidden: { opacity: 0, y: 20 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+                            }}
+                            className="grid grid-cols-3 gap-6 mb-10 pt-8 border-t border-white/10"
+                        >
                             {[['2019', 'Founded'], ['50+', 'Team Members'], ['6', 'Disciplines']].map(([val, label]) => (
                                 <div key={label}>
                                     <div className="text-3xl font-bold text-white mb-1">{val}</div>
                                     <div className="text-sm text-white/35">{label}</div>
                                 </div>
                             ))}
-                        </div>
+                        </motion.div>
 
-                        <Link
-                            href="#contact"
-                            className="group inline-flex items-center gap-2 px-7 py-4 rounded-full bg-electric text-white font-semibold hover:bg-coral transition-all duration-300 shadow-lg shadow-electric/30"
+                        <motion.div
+                            variants={{
+                                hidden: { opacity: 0, y: 16, scale: 0.97 },
+                                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] } },
+                            }}
                         >
-                            Work With Us
-                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                        </Link>
+                            <Link
+                                href="#contact"
+                                className="group inline-flex items-center gap-2 px-7 py-4 rounded-full bg-electric text-white font-semibold hover:bg-coral transition-all duration-300 shadow-lg shadow-electric/30"
+                            >
+                                Work With Us
+                                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>
